@@ -5,5 +5,5 @@ variable "Environment" {}
 variable "size" {}
 variable "azurerm_app_service_name" {}
 variable "app_service_plan_tier" {}
-variable"app_service_plan_size" {}
-variable"app_service_plan_size_kind" {} 
+variable "app_service_plan_size" {}
+variable "app_service_plan_size_kind" {} 
