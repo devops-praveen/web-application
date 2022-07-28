@@ -1,7 +1,7 @@
 azurerm_resource_group_name = "test-rg"
 azurerm_resource_group_location = "East US"
 azurerm_app_service_plan_name = "simple-plan"
-Environment = "dev"
+Environment = "test"
 size = "F1"
 azurerm_app_service_name = "aleti88-app"
 app_service_plan_tier = "Free"
