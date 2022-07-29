@@ -14,7 +14,7 @@ resource "azurerm_app_service_plan" "appserviceplan" {
     size = var.app_service_plan_size
   }
   tags = {
-    "Environment" = var.Environment
+    "environment" = var.environment
   }
 }
 
