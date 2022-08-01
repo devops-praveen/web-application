@@ -18,5 +18,5 @@ steps:
    
 -  script: ls -al && pwd
    displayName: 'list files on working directory'
--  script: sudo apt upadte && sudo apt install -y terraform && terraform -version
+-  script: sudo yum install terraform && terraform -version
    displayName: 'installing terrafrom'
