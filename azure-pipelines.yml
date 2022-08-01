@@ -3,12 +3,12 @@ trigger:
 
 pool: Default
   #vmImage: 'ubuntu-latest'
-  steps:
+steps:
   - task: TerraformInstaller@0
     displayName: 'terrafominstalling'
     inputs:
       terraformVersion: 'latest'
-
+stages:
 - stage: build
   jobs:
   - job: terraformbuild 
