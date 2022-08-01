@@ -3,21 +3,7 @@ trigger:
 
 pool: Default
   #vmImage: 'ubuntu-latest'
-
-stages:
-- stage: validate
-  jobs:
-  - job: validate
-   # ContinueOnError: flase 
-    steps:
-    - task: TerraformInstaller@0
-      displayName: 'terrafominstalling'
-      inputs:
-        terraformVersion: 'latest' 
-    - task: ExtractFiles@1
-      inputs:
-        archiveFilePatterns: '**/*.zip'
-        destinationFolder: 'terraform'
-        cleanDestinationFolder: true
-        overwriteExistingFiles: false
-        pathToSevenZipTool: '/usr/local/bin/terraform'
+  
+steps:
+- script: wget  https://releases.hashicorp.com/terraform/1.2.6/terraform_1.2.6_linux_amd64.zip
+  displayName: 'terraform installing'
