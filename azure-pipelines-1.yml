@@ -1,7 +1,7 @@
-trigger
+trigger:
 - master
 
-pool:
+pool: Default
 
 stages:
 - stage: validate
@@ -19,9 +19,5 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        backendAzureRmResourceGroupName: 'test-rg'
-        backendAzureRmStorageAccountName: 'tf-backup'
-        backendAzureRmContainerName: 'tfstate'
-        backendAzureRmKey: 'terraform.tfstate'
 
 #- stage: deploy
