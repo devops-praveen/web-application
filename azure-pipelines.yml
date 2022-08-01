@@ -10,7 +10,7 @@ pool: default
   #vmImage: ubuntu-latest
 
 steps:
--  script: echo"testing-pipeline"
+-  script: echo testing-pipeline
    displayName: 'pipeline-Testing'
    
 -  script: echo $(Build.BuildId)
