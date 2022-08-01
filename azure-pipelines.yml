@@ -14,3 +14,10 @@ stages:
       displayName: 'terrafominstalling'
       inputs:
         terraformVersion: 'latest' 
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: '**/*.zip'
+        destinationFolder: 'terraform'
+        cleanDestinationFolder: true
+        overwriteExistingFiles: false
+        pathToSevenZipTool: '/usr/local/bin/terraform'
