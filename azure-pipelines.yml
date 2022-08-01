@@ -18,5 +18,18 @@ steps:
    
 -  script: ls -al && pwd
    displayName: 'list files on working directory'
--  script: wget https://www.terraform.io/downloads && terraform -version
-   displayName: 'installing terrafrom'
+stages:
+- stage: validate
+  jobs:
+  - job: validate
+  continueOnError: false
+  steps:
+  - task: TerraformInstaller@0
+    inputs:
+      terraformVersion: 'latest'
+- task: TerraformTaskV3@3
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+
+#- stage: deploy
