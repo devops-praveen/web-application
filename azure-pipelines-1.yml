@@ -1,3 +1,8 @@
+trigger
+- master
+
+pool:
+
 stages:
 - stage: validate
   jobs:
