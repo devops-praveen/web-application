@@ -1,23 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+
 
 trigger:
 - master123
 
 pool: Default
-  #vmImage: ubuntu-latest
-
-steps:
--  script: echo testing-pipeline
-   displayName: 'pipeline-Testing'
-   
--  script: echo $(Build.BuildId)
-   displayName: 'Display the Build.ID'
-   
--  script: ls -al && pwd
-   displayName: 'list files on working directory'
+  #vmImage: 'ubuntu-latest'
 stages:
 - stage: validate
   jobs:
@@ -28,8 +15,13 @@ stages:
     inputs:
       terraformVersion: 'latest'
 - task: TerraformTaskV3@3
+  displayName: 'terraform init'
   inputs:
     provider: 'azurerm'
     command: 'init'
+    backendAzureRmResourceGroupName: 'test-rg'
+    backendAzureRmStorageAccountName: 'tf-backup'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform-tfstate'
 
 #- stage: deploy
