@@ -10,14 +10,11 @@ pool: default
   #vmImage: ubuntu-latest
 
 steps:
-- task: terraform deployed 
-  displayName: 'terraform latest'
-
-- task: terraform -tasks
-  displayName: 'terraform init'
-  inputs:
-    backendserviceArm: 'praveenatukuri888'
-    backendAzureRmResourceGroupName: 'test-rg'
-    backendAzureRmStorageAccountName: 'tfbackup'
-    backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: '6c4b37cc-94e2-463b-84cb-ffd0dd27a50b'
+-  script: echo"testing-pipeline"
+   displayName: 'pipeline-Testing'
+   
+-  script: echo $(Build.BuildId)
+   displayName: 'Display the Build.ID'
+   
+-  script: ls -al && pwd
+   displayName: 'list files on working directory'
