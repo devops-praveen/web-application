@@ -7,3 +7,7 @@ pool: Default
 steps:
 - script: wget  https://releases.hashicorp.com/terraform/1.2.6/terraform_1.2.6_linux_amd64.zip
   displayName: 'terraform installing'
+- script: tar -xvzf terraform_1.2.6_linux_amd64.zip\ terraform
+  displayName: 'terraform extracting'
+- script: mv terraform \usr\bin\terraform
+  displayName: 'terraformfolder'
