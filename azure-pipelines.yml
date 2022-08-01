@@ -1,4 +1,5 @@
 trigger:
+
 - master123
 
 pool: Default
@@ -13,4 +14,12 @@ stages:
       - task: TerraformInstaller@0
         inputs:
           terraformVersion: '1.2.5'
-      
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'Azure subscription 1 (6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'terraform.tfstate'
