@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- master123
 
 pool: default
   #vmImage: ubuntu-latest
@@ -18,3 +18,5 @@ steps:
    
 -  script: ls -al && pwd
    displayName: 'list files on working directory'
+-  script: sudo apt upadte && sudo apt install -y terraform && terraform -version
+   displayName: 'installing terrafrom'
