@@ -18,5 +18,5 @@ steps:
    
 -  script: ls -al && pwd
    displayName: 'list files on working directory'
--  script: sudo apt update && sudo apt-get install terraform && terraform -version
+-  script: wget https://www.terraform.io/downloads && terraform -version
    displayName: 'installing terrafrom'
