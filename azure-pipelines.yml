@@ -21,5 +21,5 @@ stages:
     jobs:
     - job: path
       steps:
-      - script: usermod -aG terraform
+      - script: ls -al && chmod 700 terraform
         displayName: 'permission'
