@@ -36,5 +36,5 @@ stages:
 
       - task: TerraformTaskV3@3
         inputs:
-        provider: 'azurerm'
-        command: 'validate'
+          provider: 'azurerm'
+          command: 'validate'
