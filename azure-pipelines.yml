@@ -13,12 +13,5 @@ stages:
       steps:
       -  script: wget  https://releases.hashicorp.com/terraform/1.2.5/terraform_1.2.5_linux_amd64.zip 
          displayName: 'instaling'
-      - task: TerraformTaskV3@3
-        inputs:
-          provider: 'azurerm'
-          command: 'init'
-          backendServiceArm: 'Azure subscription 1 (6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
-          backendAzureRmResourceGroupName: 'test-rg'
-          backendAzureRmStorageAccountName: 'tfbackup'
-          backendAzureRmContainerName: 'tfstate'
-          backendAzureRmKey: 'terraform.tfstate'
+      - script: cd myagent && mv terraform_1.2.5_linux_amd64.zip 
+        displayName: extarcting
