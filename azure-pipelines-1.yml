@@ -31,10 +31,11 @@ stages:
   - stage: validate
     jobs:
     - job: validate
-      dependsOn: init
+      continueOnError: false
       steps:
 
       - task: TerraformTaskV3@3
+        displayName: 'terraform validate'
         inputs:
           provider: 'azurerm'
           command: 'validate'
