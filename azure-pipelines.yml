@@ -29,3 +29,8 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          environmentServiceNameAzureRM: 'Azure subscription 1 (6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
