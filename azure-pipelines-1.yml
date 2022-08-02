@@ -13,6 +13,5 @@ stages:
         displayName: 'unzip downloading' 
 
       - task: TerraformInstaller@0
-        dispalyName: 'installing terraform'
         inputs:
           terraformVersion: 'latest'
