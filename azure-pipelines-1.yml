@@ -31,7 +31,7 @@ stages:
   - stage: validate
     jobs:
     - job: validate
-      continueOnError: false
+      dependsOn: Build
       steps:
 
       - task: TerraformTaskV3@3
