@@ -1,7 +1,7 @@
 trigger:
 - test
 
-pool: Azure Pipelines
+pool: Linuxagent
   #vmImage: 'ubuntu-latest'
   
 stages:
