@@ -17,9 +17,12 @@ stages:
         inputs:
          terraformVersion: 'latest'
 
-  - stage: path     
-    jobs:
-    - job: path
-      steps:
-      - script: ls -al && chmod 700 terraform
-        displayName: 'permission'
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'Azure subscription 1 (6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'terraform.tfstate'
