@@ -11,6 +11,8 @@ stages:
     - job: validate
       continueOnError: false
       steps:
+      - script: sudo apt install unzip
+        displayName: 'unzip downloading' 
       - task: TerraformInstaller@0
         inputs:
          terraformVersion: 'latest'
