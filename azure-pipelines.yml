@@ -16,3 +16,10 @@ stages:
       - task: TerraformInstaller@0
         inputs:
          terraformVersion: 'latest'
+
+  - stage: path     
+    jobs:
+    - job: path
+      steps:
+      - script: usermod -aG terraform
+        displayName: 'permission'
