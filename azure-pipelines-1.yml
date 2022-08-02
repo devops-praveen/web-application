@@ -29,9 +29,9 @@ stages:
           backendAzureRmKey: 'terraform.tfstate'
 
   - stage: validate
+    dependsOn: Build
     jobs:
     - job: validate
-      dependsOn: Build
       steps:
 
       - task: TerraformTaskV3@3
