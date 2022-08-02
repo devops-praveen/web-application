@@ -1,5 +1,5 @@
 trigger:
-- test
+- test12
 
 pool: Linuxagent
   #vmImage: ubuntu-latest
@@ -27,3 +27,14 @@ stages:
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: 'terraform.tfstate'
+
+  - stage: validate
+    jobs:
+    - job: validate
+      dependsOn: init
+      steps:
+
+      - task: TerraformTaskV3@3
+        inputs:
+        provider: 'azurerm'
+        command: 'validate'
