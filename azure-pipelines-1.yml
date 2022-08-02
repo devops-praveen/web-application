@@ -9,9 +9,21 @@ stages:
     - job: Build
       continueOnError: false
       steps:
+      - script: ls -al && pwd
+        displayName: 'files listing'
       - script: sudo apt install unzip
         displayName: 'unzip downloading' 
 
       - task: TerraformInstaller@0
         inputs:
           terraformVersion: 'latest'
+      
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'tf-deploy'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'terraform.tfstate'
