@@ -28,14 +28,14 @@ stages:
           backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: 'terraform.tfstate'
 
-  - stage: validate
-    dependsOn: Build
-    jobs:
-    - job: validate
-      steps:
-
       - task: TerraformTaskV3@3
         displayName: 'terraform validate'
         inputs:
           provider: 'azurerm'
           command: 'validate'
+      - task: TerraformTaskV3@3
+        displayName: 'terraform plan'
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          environmentServiceNameAzureRM: 'tf-deploy'
