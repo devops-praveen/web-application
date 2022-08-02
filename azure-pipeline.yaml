@@ -1,7 +1,7 @@
 trigger:
-- master123
+- test
 
-pool: Default
+pool: Azure Pipelines
   #vmImage: 'ubuntu-latest'
   
 stages:
@@ -14,7 +14,7 @@ stages:
         displayName: 'unzip downloading' 
       - task: TerraformInstaller@0
         inputs:
-         terraformVersion: 'latest'
+          terraformVersion: 'latest'
 
       - task: TerraformTaskV3@3
         inputs:
