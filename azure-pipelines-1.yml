@@ -37,5 +37,5 @@ stages:
         displayName: 'terraform plan'
         inputs:
           provider: 'azurerm'
-          command: 'plan'
+          command: 'plan -lock=false'
           environmentServiceNameAzureRM: 'tf-deploy'
