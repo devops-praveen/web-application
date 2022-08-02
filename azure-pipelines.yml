@@ -1,5 +1,4 @@
 trigger:
-
 - master123
 
 pool: Default
@@ -26,3 +25,7 @@ stages:
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: 'terraform.tfstate'
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'validate'
