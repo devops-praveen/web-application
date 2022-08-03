@@ -5,15 +5,28 @@
 
 trigger:
 - test
+stages:
+  - stage: Deploy
+    jobs:
+    - job: DEploy
+      dependsOn: 'Build'
+      pool: Linuxagent
+      #vmImage: ubuntu-latest
+      steps:
+      - script: sudo apt install unzip
+        displayName: 'installing unzip'
 
-pool:
-  vmImage: ubuntu-latest
+      - task: TerraformInstaller@0
+        inputs:
+          terraformVersion: 'latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'drop'
+          targetPath: '$(Pipeline.Workspace)'
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
