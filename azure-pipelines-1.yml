@@ -25,6 +25,7 @@ stages:
           backendServiceArm: 'tf-deploy'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
 
       - task: TerraformTaskV3@3
         displayName: 'terraform validate'
