@@ -56,7 +56,10 @@ stages:
           buildType: 'current'
           artifactName: 'drop'
           targetPath: '$(Pipeline.Workspace)'
+      - script: sudo apt install unzip
+        displayName: 'unzip downloading'
       - task: TerraformInstaller@0
+        displayName: 'terraform install'
         inputs:
           terraformVersion: 'latest'
       - task: TerraformTaskV3@3
