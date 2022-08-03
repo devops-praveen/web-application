@@ -37,14 +37,14 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          environmentServiceNameAzureRM: 'tf-deploy'
+          environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
       
       - task: TerraformTaskV3@3
         displayName: 'terraform apply'
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          environmentServiceNameAzureRM: 'tf-deploy'
+          environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)'
