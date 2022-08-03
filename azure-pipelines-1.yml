@@ -26,6 +26,7 @@ stages:
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'terraform.tfstate'
 
       - task: TerraformTaskV3@3
         displayName: 'terraform validate'
