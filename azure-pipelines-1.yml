@@ -37,5 +37,11 @@ stages:
         displayName: 'terraform plan'
         inputs:
           provider: 'azurerm'
-          command: 'plan -lock=false'
+          command: 'plan'
           environmentServiceNameAzureRM: 'tf-deploy'
+      - task: PublishBuildArtifacts@1
+        displayName: Building Artifactat
+        inputs:
+           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+           ArtifactName: 'drop'
+           publishLocation: 'Container'
