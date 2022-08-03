@@ -1,5 +1,5 @@
 trigger:
-- test12
+- test
 stages:
   - stage: Build
     jobs:
@@ -38,33 +38,15 @@ stages:
           provider: 'azurerm'
           command: 'plan'
           environmentServiceNameAzureRM: 'tf-deploy'
-      - task: PublishPipelineArtifact@1
-        inputs:
-          targetPath: '$(Pipeline.Workspace)'
-          artifactName: 'drop'
-          publishLocation: 'pipeline'
-  - stage: deploy
-    dependsOn: 'build'
-    jobs:
-    - job: deploy
-      pool: Linuxagent
-       #vmImage: ubuntu-latest
-      steps:
-
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          buildType: 'current'
-          artifactName: 'drop'
-          targetPath: '$(Pipeline.Workspace)'
-      - script: sudo apt install unzip
-        displayName: 'unzip downloading'
-      - task: TerraformInstaller@0
-        displayName: 'terraform install'
-        inputs:
-          terraformVersion: 'latest'
+      
       - task: TerraformTaskV3@3
         displayName: 'terraform apply'
         inputs:
           provider: 'azurerm'
           command: 'apply'
           environmentServiceNameAzureRM: 'tf-deploy'
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)'
+          artifactName: 'drop'
+          publishLocation: 'pipeline'      
