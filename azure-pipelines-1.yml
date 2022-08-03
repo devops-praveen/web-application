@@ -39,9 +39,7 @@ stages:
           provider: 'azurerm'
           command: 'plan'
           environmentServiceNameAzureRM: 'tf-deploy'
-      - task: PublishBuildArtifacts@1
-        displayName: Building Artifactat
+      - task: PublishPipelineArtifact@1
         inputs:
-          PathtoPublish: '$(- task: DownloadBuildArtifacts@0)/myagent'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
+          targetPath: '$(Pipeline.Workspace)'
+          publishLocation: 'pipeline'
