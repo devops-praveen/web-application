@@ -9,8 +9,8 @@ stages:
   - stage: Deploy
     jobs:
     - job: Deploy
-      pool: Linuxagent
-      #vmImage: ubuntu-latest
+      pool: 
+       vmImage: ubuntu-latest
       steps:
       - script: sudo apt install unzip
         displayName: 'installing unzip'
