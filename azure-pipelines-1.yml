@@ -1,12 +1,11 @@
 trigger:
 - test12
-
-pool: Linuxagent
-  #vmImage: ubuntu-latest
 stages:
   - stage: Build
     jobs:
     - job: Build
+      pool: Linuxagent
+        #vmImage: ubuntu-latest
       continueOnError: false
       steps:
       - script: ls -al && pwd
@@ -43,3 +42,21 @@ stages:
         inputs:
           targetPath: '$(Pipeline.Workspace)'
           publishLocation: 'pipeline'
+  - stage: deploy
+    dependsOn: 'build'
+    jobs:
+    - job: deploy
+      pool: Linuxagent
+       #vmImage: ubuntu-latest
+      steps:
+
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          artifactName: 'drop'
+          targetPath: '$(Pipeline.Workspace)'
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          environmentServiceNameAzureRM: 'tf-deploy'
