@@ -9,7 +9,6 @@ stages:
   - stage: Deploy
     jobs:
     - job: DEploy
-      dependsOn: 'Build'
       pool: Linuxagent
       #vmImage: ubuntu-latest
       steps:
