@@ -8,7 +8,7 @@ trigger:
 stages:
   - stage: Deploy
     jobs:
-    - job: DEploy
+    - job: Deploy
       pool: Linuxagent
       #vmImage: ubuntu-latest
       steps:
@@ -21,7 +21,10 @@ stages:
 
       - task: DownloadPipelineArtifact@2
         inputs:
-          buildType: 'current'
+          buildType: 'specific'
+          project: '54e39bc9-4c20-4580-b949-6639e7ff537c'
+          definition: '8'
+          buildVersionToDownload: 'latest'
           artifactName: 'drop'
           targetPath: '$(Pipeline.Workspace)'
       - task: TerraformTaskV3@3
