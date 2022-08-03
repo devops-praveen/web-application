@@ -56,7 +56,11 @@ stages:
           buildType: 'current'
           artifactName: 'drop'
           targetPath: '$(Pipeline.Workspace)'
+      - task: TerraformInstaller@0
+        inputs:
+          terraformVersion: 'latest'
       - task: TerraformTaskV3@3
+        displayName: 'terraform apply'
         inputs:
           provider: 'azurerm'
           command: 'apply'
