@@ -4,8 +4,8 @@ stages:
   - stage: Build
     jobs:
     - job: Build
-      pool: Linuxagent
-        #vmImage: ubuntu-latest
+      pool:
+        vmImage: ubuntu-latest
       continueOnError: false
       steps:
       - script: ls -al && pwd
