@@ -33,7 +33,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(System.ArtifactsDirectory)'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/.terraform'
           backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
@@ -44,6 +44,6 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          workingDirectory: '$(System.ArtifactsDirectory)'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/.terraform'
           commandOptions: '"plan.out"'
           environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
