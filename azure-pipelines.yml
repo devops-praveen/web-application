@@ -42,5 +42,5 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          commandOptions: '-detailed-exitcode'
+          commandOptions: '$(Pipeline.Workspace)/drop/s/-detailed-exitcode'
           environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
