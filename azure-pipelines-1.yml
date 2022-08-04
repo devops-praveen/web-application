@@ -38,7 +38,11 @@ stages:
           provider: 'azurerm'
           command: 'plan'
           environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
-      
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)'
+          Contents: '**'
+          TargetFolder: '''$(Pipeline.Workspace)'
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)'
