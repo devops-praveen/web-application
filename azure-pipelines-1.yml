@@ -43,7 +43,7 @@ stages:
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
           Contents: '**'
-          TargetFolder: '''$(Pipeline.Workspace)'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
