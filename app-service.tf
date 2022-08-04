@@ -24,12 +24,6 @@ resource "azurerm_app_service" "aleti88-devops" {
   resource_group_name = var.azurerm_resource_group_name
   app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
 
-  #site_config {
-  #python_version = "2.7"
-  # scm_type = "GitHub"
-  #}
-
-
   tags = {
     "environment" = var.environment
   }
