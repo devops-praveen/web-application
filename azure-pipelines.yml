@@ -30,7 +30,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(Pipeline.Workspace)'
+          workingDirectory: '$(System.ArtifactsDirectory)'
           backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
@@ -41,6 +41,6 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          workingDirectory: '$(Pipeline.workspace)'
+          workingDirectory: '$(System.ArtifactsDirectory)'
           commandOptions: '"plan.out"'
           environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
