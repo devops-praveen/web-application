@@ -21,19 +21,15 @@ stages:
 
       - task: DownloadBuildArtifacts@0
         inputs:
-          buildType: 'specific'
-          project: '54e39bc9-4c20-4580-b949-6639e7ff537c'
-          pipeline: '8'
-          buildVersionToDownload: 'latest'
-          downloadType: 'single'
           artifactName: 'drop'
-          downloadPath: '$(Build.ArtifactsDirectory)'
+          downloadType: 'single'
+          downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformTaskV3@3
         displayName: 'terraform init'
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(Build.ArtifactsDirectory)/drop/.terraform'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/.terraform'
           backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
@@ -44,6 +40,6 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'apply'
-          workingDirectory: '$(Build.ArtifactsDirectory)/drop/.terraform'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/.terraform'
           commandOptions: '"plan.out"'
           environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
