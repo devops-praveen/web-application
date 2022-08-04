@@ -19,14 +19,12 @@ stages:
         inputs:
           terraformVersion: '1.2.5'
 
-      - task: DownloadPipelineArtifact@2
+      - task: DownloadBuildArtifacts@0
         inputs:
-          buildType: 'specific'
-          project: '54e39bc9-4c20-4580-b949-6639e7ff537c'
-          definition: '8'
-          buildVersionToDownload: 'latest'
+          buildType: 'current'
+          downloadType: 'single'
           artifactName: 'drop'
-          targetPath: '$(Pipeline.Workspace)'
+          downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformTaskV3@3
         displayName: 'terraform init'
         inputs:
