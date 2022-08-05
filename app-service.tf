@@ -24,6 +24,13 @@ resource "azurerm_app_service" "aleti88-devops" {
   resource_group_name = var.azurerm_resource_group_name
   app_service_plan_id = azurerm_app_service_plan.appserviceplan.id
 
+  site_config {
+    linux_fx_version = "PYTHON|3.6"
+    use_32_bit_worker_process = true
+    always_on = false
+  }
+ 
+
   tags = {
     "environment" = var.environment
   }
