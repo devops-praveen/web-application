@@ -4,7 +4,7 @@ trigger:
 variables:
   subscriptionid: 'app-service'
   ResourceGroupName: 'test-rg'
-  #StorageAccountName: 'tfbackup'
+  StorageAccountName: 'tfbackup'
   ContainerName: 'tfstate'
   keyName: 'terraform.tfstate'
 
@@ -33,15 +33,14 @@ stages:
           downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformTaskV3@3
         displayName: 'terraform init'
-
         inputs:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: '$(subscriptionid)'
-          backendAzureRmResourceGroupName: '($(ResourceGroupName)'
+          backendServiceArm: 'app-service'
+          backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
-          backendAzureRmContainerName: '(ContainerName)'
+          backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: '$(KeyName)'
       - task: TerraformTaskV3@3
         displayName: 'terraform apply'
