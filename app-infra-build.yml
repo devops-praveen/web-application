@@ -3,10 +3,10 @@ trigger:
 
 variables:
   subscriptionid: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
-  resourcegroupname: 'test-rg'
-  storgaeaccountname: 'tfbackup'
-  containername: 'tfstate'
-  keyname: 'terraform.tfstate'
+  ResourceGroupName: 'test-rg'
+  StorageAccountName: 'tfbackup'
+  ContainerName: 'tfstate'
+  keyName: 'terraform.tfstate'
 stages:
   - stage: Build
     jobs:
@@ -30,10 +30,10 @@ stages:
           provider: 'azurerm'
           command: 'init'
           backendServiceArm: '$(subscriptionid)'
-          backendAzureRmResourceGroupName: '$(resourcegroupname)'
-          backendAzureRmStorageAccountName: '$(storgeaccountname)'
-          backendAzureRmContainerName: '$(containername)'
-          backendAzureRmKey: '$(keyname)'
+          backendAzureRmResourceGroupName: '$(ResourceGroupName)'
+          backendAzureRmStorageAccountName: '$(StorageAccountName)'
+          backendAzureRmContainerName: '$(ContainerName)'
+          backendAzureRmKey: '$(keyName)'
 
       - task: TerraformTaskV3@3
         displayName: 'terraform validate'
