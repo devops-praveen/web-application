@@ -43,4 +43,4 @@ stages:
           command: 'apply'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
           commandOptions: '"plan.out"'
-          environmentServiceNameAzureRM: '$(subscriptionid)'
+          environmentServiceNameAzureRM: 'app-service'
