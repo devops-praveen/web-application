@@ -19,7 +19,7 @@ stages:
         inputs:
           buildType: 'specific'
           project: '54e39bc9-4c20-4580-b949-6639e7ff537c'
-          pipeline: '8'
+          pipeline: '20'
           buildVersionToDownload: 'latest'
           downloadType: 'single'
           artifactName: 'drop'
