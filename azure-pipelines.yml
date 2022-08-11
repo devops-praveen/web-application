@@ -1,12 +1,7 @@
 
 trigger:
 - test12
-variables:
-  subscriptionid: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
-  ResourceGroupName: 'test-rg'
-  StorageAccountName: 'tfbackup'
-  ContainerName: 'tfstate'
-  keyName: 'terraform.tfstate'
+
 stages:
   - stage: Deploy
     jobs:
@@ -36,11 +31,11 @@ stages:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: '$(subscriptionid)'
-          backendAzureRmResourceGroupName: '$(ResourceGroupName)'
-          backendAzureRmStorageAccountName: '$(StorageAccountName)'
-          backendAzureRmContainerName: $(ContainerName)'
-          backendAzureRmKey: '$(keyName)'
+          backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: 'terraform.tfstate'
       - task: TerraformTaskV3@3
         displayName: 'terraform apply'
         inputs:
