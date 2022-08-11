@@ -1,5 +1,12 @@
 trigger:
 - test12
+
+variables:
+  subscriptionid: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+  resourcegroupname: 'test-rg'
+  storgaeaccountname: 'tfbackup'
+  containername: 'tfstate'
+  keyname: 'terraform.tfstate'
 stages:
   - stage: Build
     jobs:
@@ -22,11 +29,11 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
-          backendAzureRmResourceGroupName: 'test-rg'
-          backendAzureRmStorageAccountName: 'tfbackup'
-          backendAzureRmContainerName: 'tfstate'
-          backendAzureRmKey: 'terraform.tfstate'
+          backendServiceArm: '$(subscriptionid)'
+          backendAzureRmResourceGroupName: '$(resourcegroupname)'
+          backendAzureRmStorageAccountName: '$(storgeaccountname)'
+          backendAzureRmContainerName: '$(containername)'
+          backendAzureRmKey: '$(keyname)'
 
       - task: TerraformTaskV3@3
         displayName: 'terraform validate'
@@ -39,7 +46,7 @@ stages:
           provider: 'azurerm'
           command: 'plan'
           commandOptions: "-out=plan.out"
-          environmentServiceNameAzureRM: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+          environmentServiceNameAzureRM: '$(subscriptionid)'
       - task: CopyFiles@2
         inputs:
           SourceFolder: '$(System.DefaultWorkingDirectory)'
