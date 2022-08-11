@@ -2,11 +2,7 @@
 trigger:
 - test12
 variables:
-  subscriptionid: 'app-service'
-  ResourceGroupName: 'test-rg'
-  StorageAccountName: 'tfbackup'
-  ContainerName: 'tfstate'
-  keyName: 'terraform.tfstate'
+- group: azure-credentials
 
 stages:
   - stage: Deploy
@@ -37,7 +33,7 @@ stages:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: 'app-service'
+          backendServiceArm: '$(subscriptionid)'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
