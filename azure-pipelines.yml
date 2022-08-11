@@ -31,7 +31,7 @@ stages:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: 'Azure subscription 1(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
+          backendServiceArm: 'Azure subscription 1(1)(6c4b37cc-94e2-463b-84cb-ffd0dd27a50b)'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
