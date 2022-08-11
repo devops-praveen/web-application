@@ -37,7 +37,7 @@ stages:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: '$(serviceconnectionid)'
+          backendServiceArm: '$(subscriptionid)'
           backendAzureRmResourceGroupName: '($(ResourceGroupName)'
           backendAzureRmStorageAccountName: '$(StorageAccountName)'
           backendAzureRmContainerName: '(ContainerName)'
