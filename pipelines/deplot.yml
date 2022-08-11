@@ -1,0 +1,52 @@
+
+trigger:
+- test12
+variables:
+  subscriptionid: 'app-service'
+  ResourceGroupName: 'test-rg'
+  StorageAccountName: 'tfbackup'
+  ContainerName: 'tfstate'
+  keyName: 'terraform.tfstate'
+
+stages:
+  - stage: Deploy
+    jobs:
+    - job: Deploy
+      pool: 
+       vmImage: ubuntu-latest
+      steps:
+      - script: sudo apt install unzip
+        displayName: 'installing unzip'
+
+      - task: TerraformInstaller@0
+        inputs:
+          terraformVersion: '1.2.5'
+
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          buildType: 'specific'
+          project: '54e39bc9-4c20-4580-b949-6639e7ff537c'
+          pipeline: '20'
+          buildVersionToDownload: 'latest'
+          downloadType: 'single'
+          artifactName: 'drop'
+          downloadPath: '$(System.ArtifactsDirectory)'
+      - task: TerraformTaskV3@3
+        displayName: 'terraform init'
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
+          backendServiceArm: 'app-service'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: '$(KeyName)'
+      - task: TerraformTaskV3@3
+        displayName: 'terraform apply'
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
+          commandOptions: '"plan.out"'
+          environmentServiceNameAzureRM: '$(subscriptionid)'
