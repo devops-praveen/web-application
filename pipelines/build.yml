@@ -2,11 +2,7 @@ trigger:
 - test12
 
 variables:
-  subscriptionid: 'app-service'
-  ResourceGroupName: 'test-rg'
-  StorageAccountName: 'tfbackup'
-  ContainerName: 'tfstate'
-  keyName: 'terraform.tfstate'
+- group: azure-credentials
 stages:
   - stage: Build
     jobs:
