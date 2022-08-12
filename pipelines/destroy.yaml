@@ -21,7 +21,6 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
           backendServiceArm: 'app-service'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
