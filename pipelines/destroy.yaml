@@ -1,5 +1,5 @@
 trigger:
-- test
+- test12
 variables:
 - group: azure-credentials
 
@@ -22,11 +22,11 @@ stages:
           provider: 'azurerm'
           command: 'init'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
-          backendServiceArm: '$(subscriptionid)'
+          backendServiceArm: 'app-service'
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
-          backendAzureRmKey: '$(KeyName)' 
+          backendAzureRmKey: '$(KeyName)'
       - task: TerraformTaskV3@3
         inputs:
           provider: 'azurerm'
