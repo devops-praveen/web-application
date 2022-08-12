@@ -27,7 +27,8 @@ stages:
           backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: '$(KeyName)'
 
-       - task: TerraformTaskV3@3
+
+      - task: TerraformTaskV3@3
         displayName: 'terraform plan'
         inputs:
           provider: 'azurerm'
