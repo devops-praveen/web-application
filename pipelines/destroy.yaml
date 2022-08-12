@@ -33,7 +33,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          commandOptions: "-destroy-out terraform.destroy.out"
+          commandOptions: "-destroy-out"
           environmentServiceNameAzureRM: '$(subscriptionid)'
       - task: TerraformTaskV3@3
         inputs:
