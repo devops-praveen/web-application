@@ -37,7 +37,7 @@ stages:
           backendAzureRmResourceGroupName: 'test-rg'
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
-          backendAzureRmKey: '$(KeyName)'
+          backendAzureRmKey: 'terraform.tfstate'
       - task: TerraformTaskV3@3
         displayName: 'terraform apply'
         inputs:
