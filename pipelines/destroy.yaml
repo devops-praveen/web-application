@@ -26,6 +26,14 @@ stages:
           backendAzureRmStorageAccountName: 'tfbackup'
           backendAzureRmContainerName: 'tfstate'
           backendAzureRmKey: '$(KeyName)'
+
+       - task: TerraformTaskV3@3
+        displayName: 'terraform plan'
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          commandOptions: "-destroy-out terraform.destroy.out"
+          environmentServiceNameAzureRM: '$(subscriptionid)'
       - task: TerraformTaskV3@3
         inputs:
           provider: 'azurerm'
