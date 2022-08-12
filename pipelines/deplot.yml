@@ -42,7 +42,7 @@ stages:
         displayName: 'terraform apply'
         inputs:
           provider: 'azurerm'
-          command: 'apply'
+          command: 'destroy'
           workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
           commandOptions: '"plan.out"'
           environmentServiceNameAzureRM: '$(subscriptionid)'
