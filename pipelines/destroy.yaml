@@ -1,0 +1,35 @@
+trigger:
+- test
+variables:
+- group: azure-credentials
+
+stages:
+  - stage: Destroy
+    jobs:
+    - job: Destroy
+      pool: 
+       vmImage: ubuntu-latest
+      steps:
+      - script: sudo apt install unzip
+        displayName: 'installing unzip'
+      - task: TerraformInstaller@0
+        inputs:
+          terraformVersion: '1.2.5'
+      
+      - task: TerraformTaskV3@3
+        displayName: 'terraform init'
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
+          backendServiceArm: '$(subscriptionid)'
+          backendAzureRmResourceGroupName: 'test-rg'
+          backendAzureRmStorageAccountName: 'tfbackup'
+          backendAzureRmContainerName: 'tfstate'
+          backendAzureRmKey: '$(KeyName)' 
+      - task: TerraformTaskV3@3
+        inputs:
+          provider: 'azurerm'
+          command: 'destroy'
+          workingDirectory: '$(System.ArtifactsDirectory)/drop/terraform'
+          environmentServiceNameAzureRM: 'app-service'
